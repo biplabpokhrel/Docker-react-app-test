@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run bpokhrel/docker-react-test npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "docker-ractnative"
+  env: "DockerRactnative-env"
+  bucket_name: "elasticbeanstalk-us-east-2-029555221686"
+  bucket_path: "docker-ractnative"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+   secure: "$AWS_SECRET_KEY"
